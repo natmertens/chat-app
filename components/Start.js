@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TextInput, Button, StyleSheet, Text, ImageBackground, TouchableOpacity } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 
 export default class Start extends React.Component {
 
@@ -20,7 +21,7 @@ export default class Start extends React.Component {
       <View style={styles.container}>
         <ImageBackground source={image} style={styles.image}>
           <View style={styles.containerTitle}>
-            <Text style={styles.title}>App Title</Text>
+            <Text style={styles.title}>Chat App</Text>
           </View>
           <View style={styles.containerMain}>
             <View style={styles.input}>
