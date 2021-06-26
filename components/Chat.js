@@ -4,6 +4,7 @@ import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import CustomActions from "./CustomActions";
+import MapView from 'react-native-maps';
 
 const firebase = require('firebase');
 require('firebase/firestore');
@@ -99,7 +100,7 @@ export default class Chat extends React.Component {
       _id: message._id,
       uid: this.state.uid,
       createdAt: message.createdAt,
-      text: message.text,
+      text: message.text || '',
       user: message.user,
       image: message.image || null,
       location: message.location || null
@@ -133,7 +134,7 @@ export default class Chat extends React.Component {
       let data = doc.data();
       messages.push({
         _id: data._id,
-        text: data.text,
+        text: data.text || '',
         createdAt: data.createdAt.toDate(),
         user: data.user,
         image: data.image || null,

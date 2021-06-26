@@ -4,9 +4,8 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import * as Location from 'expo-location';
-/*import MapView from 'react-native-maps';*/
 import firebase from 'firebase';
-import firestore from 'firebase';
+import 'firebase/firestore';
 
 export default class CustomActions extends React.Component {
 
