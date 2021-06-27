@@ -15,6 +15,7 @@ export default class Chat extends React.Component {
     super();
     this.state = {
       messages: [],
+      user: '',
       uid: 0,
       isConnected: false,
       image: null,
@@ -34,10 +35,6 @@ export default class Chat extends React.Component {
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
-
-    /* Initialize firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();*/
 
     this.referenceChatMessages = firebase.firestore().collection('messages');
   }
@@ -70,7 +67,7 @@ export default class Chat extends React.Component {
           }
           this.setState({
             uid: user.uid,
-            messages: [],
+            messages: []
           });
           this.unsubscribe = this.referenceChatMessages
             .orderBy('createdAt', 'desc')
