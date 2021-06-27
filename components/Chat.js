@@ -53,6 +53,7 @@ export default class Chat extends React.Component {
 
   componentDidMount() {
 
+    //check if user is online
     NetInfo.fetch().then(connection => {
       if (connection.isConnected) {
         this.setState({
@@ -74,6 +75,7 @@ export default class Chat extends React.Component {
             .onSnapshot(this.onCollectionUpdate);
         });
       }
+      //if user is offline, get messages from AsyncStorage
       else {
         this.getMessages();
         console.log('offline');
@@ -104,6 +106,7 @@ export default class Chat extends React.Component {
     });
   }
 
+  //save messages to AsyncStorage
   async saveMessages() {
     try {
       await AsyncStorage.setItem('messages', JSON.stringify(this.state.messages));
@@ -112,6 +115,7 @@ export default class Chat extends React.Component {
     }
   }
 
+  //lets you delete messages
   async deleteMessages() {
     try {
       await AsyncStorage.removeItem('messages');
@@ -123,6 +127,7 @@ export default class Chat extends React.Component {
     }
   }
 
+  // update collection
   onCollectionUpdate = (querySnapshot) => {
     const messages = [];
     // go through each document
@@ -211,6 +216,7 @@ export default class Chat extends React.Component {
     this.props.navigation.setOptions({
       title: name
     })
+
     return (
       <View style={{ backgroundColor: color, flex: 1 }}>
         <GiftedChat
@@ -224,7 +230,6 @@ export default class Chat extends React.Component {
         {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
         }
       </View>
-
     );
   }
 }
