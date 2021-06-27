@@ -15,7 +15,10 @@ export default class Chat extends React.Component {
     super();
     this.state = {
       messages: [],
-      user: '',
+      user: {
+        _id: '',
+        name: ''
+      },
       uid: 0,
       isConnected: false,
       image: null,
@@ -68,6 +71,10 @@ export default class Chat extends React.Component {
           }
           this.setState({
             uid: user.uid,
+            user: {
+              _id: user.uid,
+              name: user.name
+            },
             messages: []
           });
           this.unsubscribe = this.referenceChatMessages
@@ -138,7 +145,10 @@ export default class Chat extends React.Component {
         _id: data._id,
         text: data.text || '',
         createdAt: data.createdAt.toDate(),
-        user: data.user,
+        user: {
+          _id: data.user._id,
+          name: data.user.name
+        },
         image: data.image || null,
         location: data.location || null
       });
